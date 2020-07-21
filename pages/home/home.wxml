@@ -1,0 +1,48 @@
+<!-- <view>
+	<i-toast id="toast" /> -->
+	<!-- <swiper class='lunbo' indicator-dots='true' autoplay='true' interval='6000'>
+		<swiper-item>
+			<image src='../../src/banner1.png'></image>
+		</swiper-item>
+		<swiper-item>
+			<image src='../../src/banner2.png'></image>
+		</swiper-item>
+	</swiper> -->
+	<!-- <i-panel title="常用功能" hide-border>
+		<view style="padding: 10px 8px;">
+			<i-row>
+				<i-grid i-class="i-grid">
+					<i-grid-item i-class="i-grid" wx:for="{{menu1}}" wx:key="index" wx:for-item="item">
+						<navigator url="{{item.url}}">
+							<i-grid-icon>
+								<image src="{{item.src}}" />
+							</i-grid-icon>
+							<i-grid-label>{{item.label}}</i-grid-label>
+						</navigator>
+					</i-grid-item>
+					<i-grid-item i-class="i-grid" bindtap='signOut'>
+						<i-grid-icon>
+							<image src="../../src/icon/signout.png" />
+						</i-grid-icon>
+						<i-grid-label>退出登录</i-grid-label>
+					</i-grid-item>
+					<i-modal title="提示" visible="{{ visible }}" bind:ok="confirm" bind:cancel="cancel">
+						<view>确定退出登录？</view>
+					</i-modal>
+				</i-grid>
+			</i-row>
+		</view>
+	</i-panel>
+</view> -->
+
+<scroll-view scroll-y class="scrollPage">
+  <image src='/demo/images/BasicsBg.png' mode='widthFix' class='png' style='width:100%;height:486rpx'></image>
+  <view class='nav-list'>
+    <navigator open-type="navigate" hover-class='none' url="/pages/{{item.name}}/{{item.name}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key='index'>
+      <view class="nav-title">{{item.title}}</view>
+      <view class="nav-name">{{item.name}}</view>
+      <text class='cuIcon-{{item.icon}}'></text>
+    </navigator>
+  </view>
+  <view class='cu-tabbar-height'></view>
+</scroll-view>

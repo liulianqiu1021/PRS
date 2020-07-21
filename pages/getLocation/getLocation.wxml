@@ -1,0 +1,31 @@
+<view>
+	<map style='width:100%;height:280px' longitude="{{longitude}}" latitude="{{latitude}}" scale="15" markers="{{markers}}" show-compass="ture" enable-3D="ture" enable-overlooking="ture"></map>
+	<view style="font-size:14px;margin:10px 5px">
+		当前位置：{{location}}
+		<view bindtap="refresh" style="display:block">
+			<i-icon type="coordinates" style="color:#2d8cf0;" size='20' /><span class="refresh">重新定位</span>
+		</view>
+	</view>
+	<view>
+		<view class="tableView">
+			<view class="table_header">
+				<view class="th th1">装柜序号</view>
+				<view class="th th2">装柜地点</view>
+				<view class="th th3">预约时间</view>
+				<view class="th th4">操作/时间</view>
+			</view>
+			<block wx:for="{{ listData }}" wx:for-item="item" wx:key="index">
+				<view class="table_cell">
+					<view class="td td1">{{item.SerialCode}}</view>
+					<view class="td td2">{{item.WHName}}</view>
+					<view class="td td3">{{item.AppointmentDate}}</view>
+					<view class="td td4">
+						<i-button bind:click="sign" type="primary" size="mini" i-class="btn" data-id="{{index}}" wx:if="{{item.SignDateTime==null}}">签到</i-button>
+						<view wx:else>{{item.SignDateTime}}</view>
+					</view>
+				</view>
+			</block>
+		</view>
+		<i-toast id="toast" />
+	</view>
+</view>

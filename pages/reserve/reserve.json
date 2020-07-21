@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "i-button": "../../dist/button/index",
+    "i-input": "../../dist/input/index",
+    "i-toast": "../../dist/toast/index",
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index"
+  }
+}

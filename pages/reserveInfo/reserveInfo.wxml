@@ -1,0 +1,62 @@
+<view>
+	<i-panel>
+		<i-input value="{{ reserveInfo.SerialCode }}" title="装柜序号：" disabled />
+		<i-input value="{{ reserveInfo.CabinetCode }}" title="柜号：" disabled='{{disabled}}' />
+		<i-input value="{{ reserveInfo.CarCode }}" title="车牌号：" disabled='{{disabled}}' />
+		<i-input value="{{ reserveInfo.DriverName }}" title="司机姓名：" disabled='{{disabled}}' />
+		<i-input value="{{ reserveInfo.Telephone }}" title="联系方式：" disabled='{{disabled}}' />
+		<i-input value="{{ reserveInfo.IDCard }}" title="身份证号：" disabled='{{disabled}}' />
+	</i-panel>
+
+	<view style="margin-top:15px">
+		<view class="tableView">
+			<view class="table_header">
+				<view class="th th1">装柜地点</view>
+				<view class="th th2">装柜顺序</view>
+			</view>
+			<block wx:for="{{ CabinetPlaceList }}" wx:for-item="item" wx:key="index">
+				<view class="table_cell">
+					<view class="td td1">{{item.Name}}</view>
+					<view class="td td2">
+						<picker mode="selector" value="{{item.SortNum}}" bindchange="bindNumChange" range="{{array}}" data-id='{{index}}' wx:if="{{!reserveInfo.IsAppointment}}">
+							<view class="picker">
+								<input value="{{item.SortNum}}" disabled="true" />
+							</view>
+						</picker>
+						<input value="{{item.SortNum}}" disabled="true" wx:else />
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+
+	<view style="margin-top:15px">
+		<view class="tableView">
+			<view class="table_header">
+				<view class="th th1">序号</view>
+				<view class="th th2">预约时间</view>
+				<view class="th th3">操作</view>
+			</view>
+
+			<view>
+				<view class="table_cell" wx:if="{{reserveInfo.IsAppointment}}">
+					<view class="td td1">1</view>
+					<view class="td td2">{{reserveInfo.AppointmentDate}}</view>
+					<view class="td td4">
+						<!-- 查看 -->
+						<i-button bind:click="oprate" type="primary" size="mini" i-class="btn">取消预约</i-button>
+					</view>
+				</view>
+				<view class="table_cell" wx:for="{{ AppointmentDateList }}" wx:for-item="item" wx:key="index" wx:if="{{!reserveInfo.IsAppointment}}">
+					<view class="td td1">{{index+1}}</view>
+					<view class="td td2">{{item}}</view>
+					<view class="td td4">
+						<i-button bind:click="oprate" type="primary" size="mini" i-class="btn" data-id='{{item}}'>预约</i-button>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<i-toast id="toast" />
+</view>

@@ -1,0 +1,101 @@
+.tableView {
+  border: 1px solid rgb(189, 189, 189);
+  border-right: 0;
+  border-bottom: 0;
+  width: 100%;
+}
+
+/* 表头 */
+.table_header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #5cadff;
+  width: 100%;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  overflow: scroll;
+}
+
+.th {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  border-bottom: 1px solid rgb(189, 189, 189);
+  border-right: 1px solid rgb(189, 189, 189);
+}
+
+.th1 {
+  width: 20%;
+}
+
+.th2,
+.th3 {
+  width: 30%;
+}
+
+.th4 {
+  width: 20%;
+}
+
+/* 表格 */
+.table_cell {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 25rpx;
+  color: #330e0e;
+  text-align: center;
+}
+
+.td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgb(189, 189, 189);
+  border-right: 1px solid rgb(189, 189, 189);
+  white-space: normal;
+  word-break: break-all;
+}
+
+.td1 {
+  width: 20%;
+}
+
+.td2,
+.td3 {
+  width: 30%;
+}
+
+.td4 {
+  width: 20%;
+}
+
+.btn {
+  height: 25px !important;
+  line-height: 25px !important;
+  margin: 0 !important;
+}
+
+.searchArea {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.radio {
+  margin-right: 10px;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  background-color: #409EFF;
+  border-color: #409EFF;
+}
+
+radio .wx-radio-input {
+  width: 30rpx;
+  height: 30rpx;
+}
