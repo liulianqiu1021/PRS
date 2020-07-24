@@ -32,7 +32,6 @@ Page({
         disabled: false
       })
     }
-    console.log(this.data.reserveInfo)
   },
 
   bindNumChange(e) {
@@ -46,7 +45,8 @@ Page({
     //获取可预约时间列表 获取仓库列表（预约）
     api.wxRequest(app.globalData.url + '/GetAppointmentDateAndPlace', {
       PlanCode: this.data.reserveInfo.PlanCode,
-      SerialCode: this.data.reserveInfo.SerialCode
+      SerialCode: this.data.reserveInfo.SerialCode,
+      ShippingDate: this.data.date
     }, (res) => {
       //成功
       if (res.data.IsSuccess) {

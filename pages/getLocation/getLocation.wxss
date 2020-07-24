@@ -11,18 +11,18 @@
   justify-content: space-between;
   background-color: #5cadff;
   width: 100%;
-  font-size: 30rpx;
+  font-size: 25rpx;
   color: #fff;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   overflow: scroll;
+  height: 15%;
 }
 
 .th {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70rpx;
   width: 100%;
   border-bottom: 1px solid rgb(189, 189, 189);
   border-right: 1px solid rgb(189, 189, 189);
@@ -31,8 +31,15 @@
 .th1,
 .th2,
 .th3,
-.th4 {
-  width: 25%
+.th4,
+.th5 {
+  width: 20%
+}
+
+.openMap,
+.call {
+  color: #2d8cf0;
+  text-decoration: underline;
 }
 
 /* 表格 */
@@ -49,7 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 0;
+  padding: 5px 0;
   border-bottom: 1px solid rgb(189, 189, 189);
   border-right: 1px solid rgb(189, 189, 189);
   white-space: normal;
@@ -59,8 +66,9 @@
 .td1,
 .td2,
 .td3,
-.td4 {
-  width: 25%
+.td4,
+.td5 {
+  width: 20%
 }
 
 .btn {
@@ -75,6 +83,33 @@
 }
 
 .refresh {
-  font-size: 14px;
   color: #2d8cf0;
+}
+
+.topArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #330e0e; */
+}
+
+page {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  flex: 1;
+  overflow: scroll;
 }

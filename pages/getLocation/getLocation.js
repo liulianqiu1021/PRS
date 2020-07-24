@@ -9,6 +9,9 @@ const {
   $Toast
 } = require('../../dist/base/index');
 const api = require('../../utils/request.js')
+const myAmapFun = new amapFile.AMapWX({
+  key: markersData.key
+});
 Page({
   data: {
     listData: [],
@@ -22,7 +25,114 @@ Page({
       longitude: '',
       width: 25,
       height: 25
-    }]
+    }],
+    IsInRegion: false
+  },
+  //签到
+  sign(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.id;
+    if (this.data.location == '') {
+      $Toast({
+        content: '当前地点为空'
+      })
+      return false;
+    }
+    //判断签到地点合法性
+    let LegalArea = JSON.parse(this.data.listData[index].LegalArea); //仓库经纬度数组
+    let pathCount = LegalArea.length;
+    let iSum = 0;
+
+    if (pathCount < 3) {
+      this.data.IsInRegion = false;
+    } else {
+      for (let i = 0; i < pathCount; i++) {
+        let nextIndex = i + 1;
+        if (i == pathCount - 1) {
+          nextIndex = 0;
+        }
+        let longStart = Number(LegalArea[i].xAxis); //经度
+        let latiStart = Number(LegalArea[i].yAxis); //纬度
+        let longEnd = Number(LegalArea[nextIndex].xAxis);
+        let latiEnd = Number(LegalArea[nextIndex].yAxis);
+
+        //判断纬度即Y坐标是否在2点的Y坐标内，只有在其内水平线才会相交
+        if ((this.data.latitude >= latiStart && this.data.latitude < latiEnd) ||
+          (this.data.latitude >= latiEnd && this.data.latitude < latiStart)) {
+          if (Math.abs(latiStart - latiEnd) > 0) {
+            let dLong = longStart - ((longStart - longEnd) * (latiStart - this.data.latitude)) / (latiStart - latiEnd);
+            if (dLong < this.data.longitude) {
+              iSum++;
+            }
+          }
+        }
+      }
+      if ((iSum % 2) != 0) {
+        //在区域内部
+        this.data.IsInRegion = true;
+      }
+    }
+    if (this.data.IsInRegion == true) {
+      api.wxRequest(app.globalData.url + '/SubmitSignAppointment', {
+        PlanCode: this.data.listData[index].PlanCode,
+        SerialCode: this.data.listData[index].SerialCode,
+        WHCode: this.data.listData[index].WHCode,
+        SignPlace: this.data.location
+      }, (res) => {
+        //成功
+        if (res.data.IsSuccess) {
+          wx.showToast({
+            title: '签到成功',
+            icon: 'none',
+            duration: 1500,
+            success: function () {
+              setTimeout(function () {
+                that.getData();
+              }, 1500)
+            }
+          })
+        } else {
+          $Toast({
+            content: res.data.ErrorMsg
+          })
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: '你当前位置不在仓库合法范围内，不能签到。',
+        showCancel: false,
+        confirmColor: '#409EFF'
+      })
+    }
+  },
+  //打开地图
+  openMap(e) {
+    myAmapFun.getRegeo({
+      location: '' + Number(e.currentTarget.dataset.longitude) + ',' + Number(e.currentTarget.dataset.latitude) + '',
+      success: (data) => {
+        let destinationName = data[0].regeocodeData.formatted_address;
+        if (destinationName != '' && destinationName != undefined) {
+          wx.openLocation({
+            latitude: Number(e.currentTarget.dataset.latitude),
+            longitude: Number(e.currentTarget.dataset.longitude),
+            name: destinationName
+          })
+        }
+      },
+      fail: function (info) {
+        $Toast({
+          content: "连接服务器失败，请稍后再试！",
+          type: "error"
+        })
+      }
+    });
+  },
+  //打电话
+  call(e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone
+    }).catch(() => {})
   },
   //获取当前位置经纬度
   loadInfo() {
@@ -42,9 +152,6 @@ Page({
   },
   //根据经纬度调用高德API获取准确定位
   loadCity(longitude, latitude) {
-    let myAmapFun = new amapFile.AMapWX({
-      key: markersData.key
-    });
     myAmapFun.getRegeo({
       location: '' + longitude + ',' + latitude + '', //location的格式为'经度,纬度'
       success: (data) => {
@@ -71,51 +178,18 @@ Page({
     this.loadInfo();
   },
   onShow: function () {
+    setTimeout(() => {
+      this.refresh();
+    }, 300000);
+  },
+  onLoad() {
     $Toast({
       content: '正在加载',
       type: 'loading',
       duration: 0
     });
     this.loadInfo();
-    setTimeout(() => {
-      this.refresh();
-    }, 300000);
     this.getData();
-  },
-  //签到
-  sign(e) {
-    let that = this;
-    let index = e.currentTarget.dataset.id; //出货单号
-    if (this.data.location == '') {
-      $Toast({
-        content: '当前地点为空'
-      })
-      return false;
-    }
-    api.wxRequest(app.globalData.url + '/SubmitSignAppointment', {
-      PlanCode: this.data.listData[index].PlanCode,
-      SerialCode: this.data.listData[index].SerialCode,
-      WHCode: this.data.listData[index].WHCode,
-      SignPlace: this.data.location
-    }, (res) => {
-      //成功
-      if (res.data.IsSuccess) {
-        wx.showToast({
-          title: '签到成功',
-          icon: 'none',
-          duration: 1500,
-          success: function () {
-            setTimeout(function () {
-              that.getData();
-            }, 1500)
-          }
-        })
-      } else {
-        $Toast({
-          content: res.data.ErrorMsg
-        })
-      }
-    })
   },
   // 已预约列表
   getData() {

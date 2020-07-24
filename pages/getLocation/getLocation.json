@@ -6,6 +6,7 @@
     "i-button": "../../dist/button/index",
     "i-input": "../../dist/input/index",
     "i-toast": "../../dist/toast/index",
-    "i-icon": "../../dist/icon/index"
+    "i-icon": "../../dist/icon/index",
+    "i-notice-bar": "../../dist/notice-bar/index"
   }
 }

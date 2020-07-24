@@ -16,6 +16,7 @@ Page({
     this.setData({
       date: e.detail.value
     })
+    this.search();
   },
   //查看预约信息
   showDetail(e) {

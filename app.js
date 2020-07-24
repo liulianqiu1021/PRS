@@ -6,24 +6,47 @@ App({
   globalData: {
     userInfo: null,
     url: 'https://prs.donlim.com/api/PrsApi',
+    // url: 'http://192.168.105.17/api/PrsApi',
     ShippingList: []
   },
   onLaunch: function () {
-    // 展示本地存储能力
-    // let logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
-
     let that = this;
     wx.checkSession({
-      success: function (res) {
-        // console.log("处于登录态");
-      },
+      success: function (res) {},
       fail: function (res) {
-        // console.log("需要重新登录");
         that.login();
       }
     })
+    //更新小程序
+    if (wx.canIUse('getUpdateManager')) {
+      const updateManager = wx.getUpdateManager()
+      updateManager.onCheckForUpdate(function (res) {
+        if (res.hasUpdate) {
+          updateManager.onUpdateReady(function () {
+            wx.showModal({
+              title: '更新提示',
+              content: '新版本已经准备好，是否重启应用？',
+              success: function (res) {
+                if (res.confirm) {
+                  updateManager.applyUpdate()
+                }
+              }
+            })
+          })
+          updateManager.onUpdateFailed(function () {
+            wx.showModal({
+              title: '已经有新版本上线',
+              content: '新版本已经上线，请您删除当前小程序，重新搜索打开。'
+            })
+          })
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
 
     // 获取用户信息
     wx.getSetting({
@@ -84,9 +107,9 @@ App({
     })
   },
   onHide() {
-    wx.reLaunch({
-      url: '/pages/home/home'
-    });
+    // wx.reLaunch({
+    //   url: '/pages/home/home'
+    // });
     this.globalData.ShippingList = [];
   }
 })
