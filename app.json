@@ -1,10 +1,15 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/home/home",
     "pages/reserve/reserve",
     "pages/getLocation/getLocation",
-    "pages/home/home",
-    "pages/reserveInfo/reserveInfo"
+    "pages/reserveInfo/reserveInfo",
+    "pages/LoadingList/LoadingList",
+    "pages/LoadingDetail/LoadingDetail",
+    "pages/Loading/Loading",
+    "pages/Search/Search",
+    "pages/LoadingWear/LoadingWear"
   ],
   "permission": {
     "scope.userLocation": {

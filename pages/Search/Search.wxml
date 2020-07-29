@@ -1,0 +1,50 @@
+<form bindsubmit='formSubmit'>
+	<view class="cu-form-group">
+		<view class="title">日期<text class="red">*</text></view>
+		<picker mode="date" value="{{ShipmentDate}}" start="2015-01-01" end="2050-09-01" bindchange="bindDateChange">
+			<view class="picker" bindtap="setData" style="text-align:right">
+				{{ShipmentDate}}
+			</view>
+		</picker>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap oneRow">
+			<view class="title">单位</view>
+			<input bindinput="MakeOrgInput" value="{{MakeOrg}}" placeholder="请填写"></input><text class="red"></text>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap oneRow">
+			<view class="title">装柜地点</view>
+			<input bindinput="LoadingPlaceInput" value="{{LoadingPlace}}" placeholder="请填写"></input><text class="red"></text>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap oneRow">
+			<view class="title">序号</view>
+			<input bindinput="BoxSnInput" value="{{BoxSn}}" placeholder="请填写"></input><text class="red"></text>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap oneRow">
+			<view class="title">柜号</view>
+			<input bindinput="BoxNoInput" value="{{BoxNo}}" placeholder="请填写"></input><text class="red"></text>
+		</view>
+	</view>
+	<!-- <view class="cu-form-group">
+		<view class="flex flex-wrap">
+      <view class="title">是否离厂<text class="red">*</text></view> -->
+	<!-- <input bindinput="BoxNoInput" value="{{BoxNo}}" placeholder="请填写"></input><text class="red"></text> -->
+	<!-- </view> -->
+
+	<checkbox-group class="block" bindchange="checkboxChange">
+		<view class="cu-form-group margin-top">
+			<view class="title">是否离厂</view>
+			<checkbox class="round blue" :class="checkbox[0].checked?'checked':''" :checked="checkbox[0].checked?true:false" value="A"></checkbox>
+		</view>
+	</checkbox-group>
+
+	<view class="padding flex flex-direction">
+		<button class="cu-btn lg shadow-blur" style="background:#409EFF;color:#fff" bindtap="ticketDetailPage">搜索</button>
+	</view>
+</form>

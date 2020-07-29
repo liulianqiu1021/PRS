@@ -1,0 +1,20 @@
+@import "/demo/colorui/main.wxss";
+@import "/demo/colorui/icon.wxss";
+
+.oneItem {
+  width: 95%;
+  padding: 13px;
+  background: #ffffff;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.lineHeight {
+  line-height: 25px;
+}
+
+.btn {
+  position: fixed;
+  bottom: 6%;
+  right: 8%;
+}

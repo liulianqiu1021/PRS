@@ -1,0 +1,84 @@
+<scroll-view scroll-y class="scrollPage">
+	<i-toast id="toast" />
+	<view class="btn" wx:if='{{btnShow}}'>
+		<button class="cu-btn shadow-blur" style="background:#409EFF;color:#fff" bindtap="searchValueInput">搜索</button>
+	</view>
+
+	<view>
+		<view class="oneItem" wx:for="{{ticketList}}" wx:key="item">
+			<view class="content" bindtap='ticketDetailPage' hover-class="none" data-itemObject='{{item}}'>
+				<view class="lineHeight">
+					<text class="cuIcon-formfill text-blue">
+            <text class="text-blue">【单号：{{item.DocNo}}】</text></text>
+				</view>
+				<view class="lineHeight">
+					<text class="text-black">【序号：{{item.BoxSn}}】</text>
+					<text class="text-black">【柜号：{{item.BoxNo}}】</text>
+				</view>
+				<view class="lineHeight">
+					<text class="text-black">【柜型：{{item.BoxType}}】</text>
+					<text class="text-black">【到厂距离：{{item.Distance}}】</text>
+				</view>
+				<view class="lineHeight">
+					<text class="text-black">【车牌号：{{item.TruckNumber}}】</text>
+				</view>
+				<view class="lineHeight">
+					<text class="text-black">【预约时间：{{item.ArrivalTiem}}点】</text>
+					<text class="text-black">【签到时间：{{item.SignTime}}】</text>
+				</view>
+				<!-- <view class="lineHeight">
+					<text class="text-black">【签到时间：{{item.SignTime}}】</text>
+				</view> -->
+				<view class="lineHeight">
+					<text class="text-black">【离厂时间：{{item.LeaveTime}}】</text>
+				</view>
+				<view class="lineHeight">
+					<text class="text-black">【结关时间：{{item.OutGoDate}}】</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- <view class="cu-tabbar-height"></view> -->
+</scroll-view>
+
+
+
+
+<!-- <view>
+		<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+			<block wx:for="{{ticketList}}" wx:key="item">
+				<view class="cu-item arrow">
+					<view class="content" bindtap='ticketDetailPage' hover-class="none" data-itemObject='{{item}}'>
+						<view>
+							<text class="cuIcon-formfill text-blue">
+            <text class="text-blue">【单号：{{item.DocNo}}】</text></text>
+						</view>
+						<view>
+							<text class="text-black">【序号：{{item.BoxSn}}】</text>
+							<text class="text-black">【柜号：{{item.BoxNo}}】</text>
+						</view>
+						<view>
+							<text class="text-black">【柜型：{{item.BoxType}}】</text>
+							<text class="text-black">【到厂距离：{{item.Distance}}】</text>
+						</view>
+						<view>
+							<text class="text-black">【车牌号：{{item.TruckNumber}}】</text>
+						</view>
+						<view>
+							<text class="text-black">【预约时间：{{item.ArrivalTiem}}点】</text>
+						</view>
+						<view>
+							<text class="text-black">【签到时间：{{item.SignTime}}】</text>
+						</view>
+						<view>
+							<text class="text-black">【离厂时间：{{item.LeaveTime}}】</text>
+						</view>
+						<view>
+							<text class="text-black">【结关时间：{{item.OutGoDate}}】</text>
+						</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view> -->

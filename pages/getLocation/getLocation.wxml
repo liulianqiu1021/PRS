@@ -10,6 +10,9 @@
 				<i-icon type="coordinates" style="color:#2d8cf0;" size='16' /><span class="refresh">重新定位</span>
 			</view>
 		</view>
+		<view>
+		</view>
+
 		<view class="table_header">
 			<view class="th th1">装柜序号</view>
 			<view class="th th2">装柜地点</view>
@@ -27,7 +30,7 @@
 			<view class="tableView">
 				<block wx:for="{{ listData }}" wx:for-item="item" wx:key="index">
 					<view class="table_cell">
-						<view class="td td1">{{item.SerialCode}}</view>
+						<view class="td td1 openMap" bindtap="opeLoading" data-code="{{item.SerialCode}}" data-time='{{item.SignDateTime}}' data-name='{{item.WHName}}'>{{item.SerialCode}}</view>
 						<view class="td td2 openMap" bindtap="openMap" data-longitude='{{item.LocationX}}' data-latitude='{{item.LocationY}}'>{{item.WHName}}</view>
 						<view class="td td3">{{item.AppointmentDate}}</view>
 						<view class="td td4">

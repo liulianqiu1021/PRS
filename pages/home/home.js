@@ -1,3 +1,8 @@
+const api = require('../../utils/request.js')
+const app = getApp();
+const {
+  $Toast
+} = require('../../dist/base/index');
 Component({
   options: {
     addGlobalClass: true,
@@ -17,7 +22,7 @@ Component({
       },
       {
         title: '装柜列表',
-        // name: 'reserveInfo',
+        name: 'LoadingList',
         color: 'red',
         icon: 'form'
       },
@@ -30,12 +35,23 @@ Component({
     ]
   },
   methods: {
-    onShareAppMessage: function () {
+    onShareAppMessage() {
       return {
         title: '排柜预约系统',
         desc: '新宝电器出货系统排柜预约',
         imageUrl: './shareImg.jpg'
       }
+    },
+    onLoad(e) {
+      api.wxRequest(app.globalData.url + '/GetRoles', {
+        UserCode: wx.getStorageSync('usercode')
+      }, (res) => {
+        //成功
+        if (res.data.IsSuccess) {
+          app.globalData.userRole = res.data.Role;
+        }
+      })
+      wx.removeStorageSync('SearchObject')
     }
   }
 })

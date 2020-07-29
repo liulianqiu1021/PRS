@@ -2359,7 +2359,7 @@ button.icon.lg {
 	padding: 1rpx 30rpx;
 	display: flex;
 	align-items: center;
-	min-height: 100rpx;
+	min-height: 80rpx;
 	justify-content: space-between;
 }
 
@@ -2372,8 +2372,8 @@ button.icon.lg {
 	padding-right: 30rpx;
 	font-size: 30rpx;
 	position: relative;
-	height: 60rpx;
-	line-height: 60rpx;
+	/* height: 60rpx;
+	line-height: 60rpx; */
 }
 
 .cu-form-group input {
@@ -2413,7 +2413,7 @@ button.icon.lg {
 }
 
 .cu-form-group picker .picker {
-	line-height: 100rpx;
+	line-height: 80rpx;
 	font-size: 28rpx;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -2429,7 +2429,7 @@ button.icon.lg {
 	position: absolute;
 	font-size: 34rpx;
 	color: var(--grey);
-	line-height: 100rpx;
+	line-height: 80rpx;
 	width: 60rpx;
 	text-align: center;
 	top: 0;
@@ -2537,11 +2537,13 @@ button.icon.lg {
 .cu-modal.drawer-modal.show .cu-dialog {
 	transform: translateX(0%);
 }
-.cu-modal .cu-dialog>.cu-bar:first-child .action{
-  min-width: 100rpx;
-  margin-right: 0;
-  min-height: 100rpx;
+
+.cu-modal .cu-dialog>.cu-bar:first-child .action {
+	min-width: 100rpx;
+	margin-right: 0;
+	min-height: 100rpx;
 }
+
 /* ==================
          轮播
  ==================== */
@@ -2999,7 +3001,7 @@ scroll-view.cu-steps .cu-item {
 .grid.col-2.grid-square>view:nth-child(2n),
 .grid.col-3.grid-square>view:nth-child(3n),
 .grid.col-4.grid-square>view:nth-child(4n),
-.grid.col-5.grid-square>view:nth-child(5n){
+.grid.col-5.grid-square>view:nth-child(5n) {
 	margin-right: 0;
 }
 
@@ -3066,7 +3068,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .margin-top-xl {
-	margin-top: 50rpx;
+	margin-top: 20rpx;
 }
 
 .margin-right-xs {

@@ -7,7 +7,9 @@ App({
     userInfo: null,
     url: 'https://prs.donlim.com/api/PrsApi',
     // url: 'http://192.168.105.17/api/PrsApi',
-    ShippingList: []
+    ShippingList: [],
+    Flag: false,
+    userRole: ''
   },
   onLaunch: function () {
     let that = this;

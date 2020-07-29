@@ -1,0 +1,270 @@
+<form bindsubmit='formSubmit'>
+	<view class="cu-bar bg-white">
+		<view class="action sub-title">
+			<text class="text-xl text-bold text-blue justify-center">装柜明细</text>
+			<text class="bg-blue"></text>
+		</view>
+	</view>
+
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">单号</view>
+			<view>{{DocNo}}</view>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">同柜订单</view>
+			{{DocNoList}}
+
+			<block wx:for="{{buttonList}}" wx:key="item">
+				<view bindtap="ticketDetailPage" hover-class="none" data-itemObject='{{item}}'>
+					<button class="cu-btn bg-blue" style="background:#409EFF;color:#fff" data-target="DialogModal1">{{item}}</button>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- form-type="submit" bindtap="showModal" -->
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">数量<text class="red">**</text></view>
+			<input bindinput="OutQtyActualInput" value="{{OutQtyActual}}" placeholder="请填写"></input><text class="red">计划数:{{OutQtyPlan}}</text>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">箱数<text class="red">**</text></view>
+			<input bindinput="CaseNumInput" value="{{BoxQtyActual}}" placeholder="请填写"></input><text class="red">计划数:{{BoxQty}}</text>
+		</view>
+	</view>
+
+
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">装箱数</view>
+			{{BoxNumPer}}
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">毛重<text class="red">**</text></view>
+			<input bindinput="GrossWeightInput" value="{{GrossWeight}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">净重<text class="red">**</text></view>
+			<input bindinput="NetWeightInput" value="{{NetWeight}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">长<text class="red">**</text></view>
+			<input bindinput="LengthInput" value="{{BoxLength}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">宽<text class="red">**</text></view>
+			<input bindinput="WidthInput" value="{{BoxWidth}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">高<text class="red">**</text></view>
+			<input bindinput="HeigthInput" value="{{BoxHight}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">到厂时间</view>
+			<view class="content">{{ArrivalDatePlan}}</view>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">离厂时间</view>
+			<view class="content">{{LeaveDateTime}}</view>
+		</view>
+	</view>
+
+	<!-- <view class="cu-form-group">
+  <view class="title">离厂日期<text class="red">**</text></view>
+  <picker mode="date" value="{{OutDate}}" start="1995-09-01" end="2100-09-01" bindchange="bindDateChange">
+    <view class="picker">
+     {{OutDate}}
+    </view>
+  </picker>
+</view>
+	<view class="cu-form-group">
+  <view class="title">离厂时间<text class="red">**</text></view>
+  <picker mode="time" value="{{OutTime}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+    <view class="picker">
+       {{OutTime}}
+    </view>
+  </picker>
+</view> -->
+
+	<!-- <view class="cu-form-group">
+		<view class="flex flex-wrap">
+      <view class="title">到厂距离<text class="red">*</text></view>
+      <input bindinput="DistanceInput" value="{{Distance}}" placeholder="请填写"></input>
+			（km）
+    </view>
+  </view> -->
+
+	<view class="cu-form-group">
+		<view class="flex flex-wrap">
+			<view class="title">排位</view>
+			<input bindinput="OrderNumInput" value="{{Rank}}" placeholder="请填写"></input>
+		</view>
+	</view>
+	<view class="cu-form-group align-start">
+		<view class="title">异常情况</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textAreaValidate" value="{{Unusual}}" placeholder="请描述"></textarea>
+	</view>
+
+	<!-- 空柜图片嵌入-->
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			空柜图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<!-- 预览图片 -->
+			<view class="bg-img" wx:for="{{imgListView}}" wx:key="index" bindtap="ViewImage" data-url="{{imgListView[index]}}" wx:if="{{imgListView!=''&&imgListView!=null}}">
+				<image src='{{imgListView[index]}}' mode='aspectFill'></image>
+			</view>
+			<!-- 上传图片 -->
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<!-- 第一排图片嵌入-->
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			第一排图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<!-- 预览图片 -->
+			<view class="bg-img" wx:for="{{imgListViewOne}}" wx:key="index" bindtap="ViewImageOne" data-url="{{imgListViewOne[index]}}" wx:if="{{imgListViewOne!=''&&imgListViewOne!=null}}">
+				<image src='{{imgListViewOne[index]}}' mode='aspectFill'></image>
+			</view>
+			<!-- 上传图片 -->
+			<view class="bg-img" wx:for="{{imgListOne}}" wx:key="index" bindtap="ViewImageOne" data-url="{{imgListOne[index]}}">
+				<image src='{{imgListOne[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImgOne" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImageOne" wx:if="{{imgListOne.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<!-- 半柜图片嵌入-->
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			半柜图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<!-- 预览图片 -->
+			<view class="bg-img" wx:for="{{imgListViewTwo}}" wx:key="index" bindtap="ViewImageTwo" data-url="{{imgListViewTwo[index]}}" wx:if="{{imgListViewTwo!=''&&imgListViewTwo!=null}}">
+				<image src='{{imgListViewTwo[index]}}' mode='aspectFill'></image>
+			</view>
+			<!-- 上传图片 -->
+			<view class="bg-img" wx:for="{{imgListTwo}}" wx:key="index" bindtap="ViewImageTwo" data-url="{{imgListTwo[index]}}">
+				<image src='{{imgListTwo[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImgTwo" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImageTwo" wx:if="{{imgListTwo.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<!-- 满柜图片嵌入-->
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			满柜图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<!-- 预览图片 -->
+			<view class="bg-img" wx:for="{{imgListViewThree}}" wx:key="index" bindtap="ViewImageThree" data-url="{{imgListViewThree[index]}}" wx:if="{{imgListViewThree!=''&&imgListViewThree!=null}}">
+				<image src='{{imgListViewThree[index]}}' mode='aspectFill'></image>
+			</view>
+			<!-- 上传图片 -->
+			<view class="bg-img" wx:for="{{imgListThree}}" wx:key="index" bindtap="ViewImageThree" data-url="{{imgListThree[index]}}">
+				<image src='{{imgListThree[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImgThree" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImageThree" wx:if="{{imgListThree.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<!-- 封条图片嵌入-->
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			封条图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<!-- 预览图片 -->
+			<view class="bg-img" wx:for="{{imgListViewFour}}" wx:key="index" bindtap="ViewImageFour" data-url="{{imgListViewFour[index]}}" wx:if="{{imgListViewFour!=''&&imgListViewFour!=null}}">
+				<image src='{{imgListViewFour[index]}}' mode='aspectFill'></image>
+			</view>
+			<!-- 上传图片 -->
+			<view class="bg-img" wx:for="{{imgListFour}}" wx:key="index" bindtap="ViewImageFour" data-url="{{imgListFour[index]}}">
+				<image src='{{imgListFour[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImgFour" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImageFour" wx:if="{{imgListFour.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+
+	<view class="padding cu-bar bg-white margin-top buttonMenu">
+		<!-- <view class="padding flex flex-direction"> -->
+		<button class="cu-btn bg-blue lg" style="background:#409EFF;color:#fff" data-target="DialogModal1" bindtap="showModal" data-state="Finish">离厂</button>
+		<button class="cu-btn bg-blue lg" style="background:#409EFF;color:#fff" data-target="DialogModal1" bindtap="showModal" data-state="Post">保存</button>
+	</view>
+
+	<!-- <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">提交确认</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<view class="cu-bar bg-white justify-end">
+				<view class="action">
+					<button class="cu-btn line-blue text-blue margin-left" bindtap="hideModal">取消</button>
+					<button class="cu-btn bg-blue margin-left" form-type="submit" disabled="{{disabled}}" bindtap="hideModal">确定</button>
+				</view>
+			</view>
+		</view> 
+	</view>-->
+</form>

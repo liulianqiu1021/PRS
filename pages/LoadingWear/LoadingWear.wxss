@@ -1,0 +1,90 @@
+/* pages/myTicketDetail/myTicketDetails.wxss */.cu-form-group .title {
+  min-width: calc(5em + 30rpx);
+}
+
+.cu-form-group picker .picker {
+	text-align: left;
+	vertical-align: middle;
+}
+
+.sign-setting-border {
+	margin-top: 10px;
+  width: 20%;
+  float: left;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #999999;
+  font-size: 15px;
+  text-align: center;
+  font-family: -apple-system;
+  margin-bottom: 15px;
+  border: 1px solid #DBDBDB;
+	
+}
+
+.selected {
+  background-color: #5cadff;
+  color: rgba(255, 255, 255, 1);
+  border: 1px solid #5cadff;
+}
+
+.btn {
+  width: 45%;
+  background-color: #2d8cf0;
+  color: #fff;
+  border-radius: 0;
+  font-size: 15px;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.btn-right {
+  background-color: #ed3f14;
+  float: right;
+}
+
+.btn-left {
+  float: left;
+}
+
+.red{
+  color:red;
+}
+
+.content-large{
+  min-height: 100px;
+}
+
+.table {
+  border: 0px solid white;
+ }
+ .tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 3rem;
+  align-items: center;
+ }
+ .td {
+  width:40%;
+  justify-content: center;
+  text-align: center;
+ }
+ .bg-w{
+  background: snow;
+ }
+ .bg-g{
+  background: white;
+ }
+ .th {
+  width: 40%;
+  justify-content: center;
+  background: #3366FF;
+  color: #fff;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+ }
+ 

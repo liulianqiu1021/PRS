@@ -1,0 +1,144 @@
+<form bindsubmit='formSubmit'>
+	<view class="cu-bar bg-white">
+		<view class="action sub-title">
+			<text class="text-xl text-bold text-blue justify-center">详情</text>
+			<text class="bg-blue"></text>
+			<!-- last-child选择器-->
+		</view>
+	</view>
+
+	<block wx:for="{{detailList}}" wx:key="item">
+		<view class="content" hover-class="none" data-itemObject='{{item}}'>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">柜序号<text class="red">*</text></view>
+					<view class="content">{{item.BoxSn}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">船务员<text class="red">*</text></view>
+					<view class="content">{{item.CreateMan}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">柜号<text class="red">*</text></view>
+					<view class="content">{{item.BoxNo}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">柜型<text class="red">*</text></view>
+					<view class="content">{{item.BoxType}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">单号<text class="red">*</text></view>
+					<view class="content">{{item.DocNo}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">型号<text class="red">*</text></view>
+					<view class="content">{{item.ProductModel}}</view>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">计划数量<text class="red">*</text></view>
+					<p class="content">{{item.OutQtyPlan}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">计划箱数<text class="red">*</text></view>
+					<p class="content">{{item.BoxQty}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">运输公司<text class="red">*</text></view>
+					<p class="content">{{item.TransportComp}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">车牌号<text class="red">*</text></view>
+					<p class="content">{{item.TruckNumber}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">司机<text class="red">*</text></view>
+					<view class="content" bindtap="callPhone" class="driver">{{item.DriverName}}</view>
+					<!-- <button class="picker" style="color:blue" type="default" bindtap="callPhone">{{item.DriverName}}</button> -->
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">起运港<text class="red">*</text></view>
+					<p class="content">{{item.PortLoading}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">报关方式<text class="red">*</text></view>
+					<p class="content">{{item.DeclareMode}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">易损件<text class="red">*</text></view>
+					<p class="content">{{item.WearPart}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">船务备注<text class="red">*</text></view>
+					<p class="content">{{item.ShippingNote}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">结关时间<text class="red">*</text></view>
+					<p class="content">{{item.HeavyBoxDate}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">装柜地点<text class="red">*</text></view>
+					<p class="content">{{item.LoadingPlace}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">OQC验货<text class="red">*</text></view>
+					<p class="content">{{item.OQCResult}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">客户验货<text class="red">*</text></view>
+					<p class="content">{{item.QhResult}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">制造组织<text class="red">*</text></view>
+					<p class="content">{{item.MakeOrg}}</p>
+				</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="flex flex-wrap">
+					<view class="title">同柜订单<text class="red">*</text></view>
+					<p class="content">{{item.DocNoList}}</p>
+				</view>
+			</view>
+			<view class="padding flex flex-direction" bindtap="ticketDetailPage">
+				<button class="cu-btn lg" style="background:#409EFF;color:#fff" data-target="DialogModal1">开始装柜</button>
+			</view>
+		</view>
+	</block>
+</form>

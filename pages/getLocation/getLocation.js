@@ -134,6 +134,23 @@ Page({
       phoneNumber: e.currentTarget.dataset.phone
     }).catch(() => {})
   },
+  //进入对应装柜地点的装柜信息
+  opeLoading(e) {
+    //管理员或装柜员
+    if (app.globalData.userRole == 0 || app.globalData.userRole == 1) {
+      if (e.currentTarget.dataset.time != null) {
+        let SerialCode = e.currentTarget.dataset.code; //装柜序号
+        let WHName = e.currentTarget.dataset.name; //装柜地点
+        wx.navigateTo({
+          url: '/pages/Search/Search?BoxSn=' + SerialCode + '&LoadingPlace=' + WHName
+        })
+      } else {
+        $Toast({
+          content: "司机还未签到，无法查看装柜信息！"
+        })
+      }
+    }
+  },
   //获取当前位置经纬度
   loadInfo() {
     let that = this;
